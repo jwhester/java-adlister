@@ -5,9 +5,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "ViewProfileServlet", urlPatterns = "/profile")
-public class ViewProfileServlet extends HttpServlet {
+@WebServlet(name = "ContactServlet", urlPatterns = "/contact")
+public class ContactServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/profile.jsp").forward(request, response);
+        request.getRequestDispatcher("/contact.jsp").forward(request, response);
+        request.setAttribute("contacts", DaoFactory.getContactDao().getContacts());
+        request.getRequestDispatcher("/contact.jsp").forward(request, response);
     }
 }
